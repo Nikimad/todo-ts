@@ -33,6 +33,42 @@ describe("List", () => {
     expect(todos.length).toBe(2);
   });
 
+  it("Редактирование задачи", () => {
+    const staticTextButton = screen.getAllByLabelText(/^static-text-/)[0];
+    fireEvent.click(staticTextButton);
+
+    const id = staticTextButton
+      .getAttribute("aria-label")!
+      .replace("static-text-", "");
+
+    const input = screen.getByLabelText(`text-${id}`);
+    const form = screen.getByLabelText(`form-${id}`);
+
+    fireEvent.change(input, { target: { value: "123" } });
+    fireEvent.submit(form);
+
+    expect(screen.getByText("123")).toBeInTheDocument();
+  });
+
+  it("Редактирование задачи: пустой текст", () => {
+    const staticTextButton = screen.getAllByLabelText(/^static-text-/)[0];
+    fireEvent.click(staticTextButton);
+
+    const id = staticTextButton
+      .getAttribute("aria-label")!
+      .replace("static-text-", "");
+
+    const input = screen.getByLabelText(`text-${id}`);
+    const form = screen.getByLabelText(`form-${id}`);
+
+    fireEvent.change(input, { target: { value: "" } });
+    fireEvent.submit(form);
+
+    expect(
+      screen.queryByLabelText(`static-text-${id}`)
+    ).not.toBeInTheDocument();
+  });
+
   it("Удаление задач", () => {
     const deleteButton = screen.getAllByLabelText(/delete/)[0];
     fireEvent.click(deleteButton);
