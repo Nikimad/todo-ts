@@ -3,7 +3,6 @@ import type { TodoType, FilterValueType } from "../../models";
 
 import Item from "../Item";
 import Adder from "../Adder";
-import Filters from "../Filters";
 
 import "./List.css";
 import Footer from "../Footer";
