@@ -19,6 +19,7 @@ export interface ListProps {
   handleDeleteCompleted: () => void;
   handleToggle: (id: string) => void;
   handleDelete: (id: string) => void;
+  handleEdit: (id: string, text: string) => void;
 }
 
 const List: FC<ListProps> = ({
@@ -33,6 +34,7 @@ const List: FC<ListProps> = ({
   handleDeleteCompleted,
   handleToggle,
   handleDelete,
+  handleEdit,
 }) => (
   <>
     <Adder value={text} onChange={handleChange} onSubmit={handleSubmit} />
@@ -44,6 +46,7 @@ const List: FC<ListProps> = ({
             todo={todo}
             onToggle={handleToggle}
             onDelete={handleDelete}
+            onEdit={handleEdit}
           />
         ))}
       </ul>

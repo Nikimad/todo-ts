@@ -8,10 +8,6 @@
   padding: 1.25rem 1.5rem;
 }
 
-.adder__input::placeholder {
-  color: var(--disabled-color);
-}
-
 .adder__button {
   font-size: 2rem;
   line-height: 0;

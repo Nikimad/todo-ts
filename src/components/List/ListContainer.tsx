@@ -41,6 +41,20 @@ const ListContainer = () => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   }, []);
 
+  const handleEdit = useCallback((id: string, newText: string) => {
+    setTodos((prev) =>
+      prev.reduce<TodoType[]>((acc, todo) => {
+        if (todo.id === id) {
+          const trimmedText = newText.trim();
+          return trimmedText !== ""
+            ? [...acc, { ...todo, text: trimmedText }]
+            : acc;
+        }
+        return [...acc, todo];
+      }, [])
+    );
+  }, []);
+
   const handleDeleteCompleted = useCallback(() => {
     setTodos((prev) => prev.filter((todo) => !todo.completed));
   }, []);
@@ -70,6 +84,7 @@ const ListContainer = () => {
       handleDeleteCompleted={handleDeleteCompleted}
       handleToggle={handleToggle}
       handleDelete={handleDelete}
+      handleEdit={handleEdit}
     />
   );
 };
