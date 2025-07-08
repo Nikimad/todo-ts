@@ -1,0 +1,7 @@
+.filter {
+  text-transform: capitalize;
+}
+
+.filter:disabled {
+  color: var(--active-color);
+}

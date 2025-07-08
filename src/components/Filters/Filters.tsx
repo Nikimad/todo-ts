@@ -3,6 +3,8 @@ import type { FilterType, FilterValueType } from "../../models";
 
 import Filter from "../Filter";
 
+import "./Filters.css";
+
 interface FiltersProps {
   currentFilterValue: FilterValueType;
   onSelect: (filterValue: FilterValueType) => void;
@@ -19,7 +21,7 @@ const Filters: FC<FiltersProps> = ({ currentFilterValue, onSelect }) => {
   ];
 
   return (
-    <div>
+    <div className="filters">
       {filters.map((filter) => (
         <Filter
           key={filter.value}

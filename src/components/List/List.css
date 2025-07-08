@@ -1,0 +1,25 @@
+.list {
+  height: 50vh;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.list::-webkit-scrollbar {
+  width: 2px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 3px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--scroll-color), transparent);
+  border-radius: 20px;
+}
+
+.list__wrapper {
+  overflow: hidden;
+  padding-block: 2px;
+}
