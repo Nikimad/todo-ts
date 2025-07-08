@@ -5,6 +5,9 @@ import Item from "../Item";
 import Adder from "../Adder";
 import Filters from "../Filters";
 
+import "./List.css";
+import Footer from "../Footer";
+
 export interface ListProps {
   text: string;
   todos: TodoType[];
@@ -32,33 +35,28 @@ const List: FC<ListProps> = ({
   handleToggle,
   handleDelete,
 }) => (
-  <div>
+  <>
     <Adder value={text} onChange={handleChange} onSubmit={handleSubmit} />
-    <div>
-      <div aria-label="todos counter">{activeCount} items left</div>
-      <Filters
-        currentFilterValue={currentFilterValue}
-        onSelect={handleSelectFilter}
-      />
+    <div className="styledwrapper list__wrapper">
+      <ul className="list">
+        {filteredTodos.map((todo) => (
+          <Item
+            key={todo.id}
+            todo={todo}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
+          />
+        ))}
+      </ul>
     </div>
-    <button
-      onClick={handleDeleteCompleted}
-      disabled={!todos.some((todo) => todo.completed)}
-      aria-label="Delete completed"
-    >
-      Delete completed
-    </button>
-    <ul>
-      {filteredTodos.map((todo) => (
-        <Item
-          key={todo.id}
-          todo={todo}
-          onToggle={handleToggle}
-          onDelete={handleDelete}
-        />
-      ))}
-    </ul>
-  </div>
+    <Footer
+      activeCount={activeCount}
+      currentFilterValue={currentFilterValue}
+      isCompletedExist={todos.some((todo) => todo.completed)}
+      onSelect={handleSelectFilter}
+      onDeleteCompleted={handleDeleteCompleted}
+    />
+  </>
 );
 
 export default List;
