@@ -30,6 +30,14 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
+input {
+  width: 100%;
+}
+
+input::placeholder {
+  color: var(--disabled-color);
+}
+
 .body {
   color: var(--font-color);
   font-family: sans-serif;
